@@ -27,7 +27,7 @@
         @foreach ($employees as $employee)
 
                     <th scope="row">{{$loop->iteration}}</th>
-                    <td><img src="{{ asset('storage/' . $employee->image) }}"></td>
+                    <td><img src="{{ asset('uploads/' . $employee->image) }}"></td>
                     <td>{{$employee->name}}</td>
                     <td>{{$employee->phone_number}}</td>
                     <td>{{$employee->department_id}}</td>

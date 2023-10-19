@@ -12,4 +12,8 @@ class Allowance extends Model
         'name',
         'amount'
     ];
+
+    public function employee(){
+        return $this->belongsToMany(Employee::class);
+    }
 }

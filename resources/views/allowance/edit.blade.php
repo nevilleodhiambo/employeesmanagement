@@ -8,6 +8,7 @@
             <div class="bg-light rounded h-100 p-4">
                 <h6 class="mb-4">Create Allowance</h6>
                 <form method="POST" action="{{route('allowance.update', $allowance->id)}}">
+                    @method('PUT')
                     @csrf
                 <div class="form-floating mb-3"> 
                     <input type="text" class="form-control @error('relief') border-red                     

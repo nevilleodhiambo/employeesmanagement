@@ -93,6 +93,15 @@
                 @enderror </div>
         </div>
 
+        <h6 class="mb-4">Assign Allowance</h6>
+
+
+        <div class="form-floating mb-3">
+            @foreach ($allowances as $allowance)
+            <input type="checkbox" name="allowances[]" value="{{ $allowance->id }}"> {{ $allowance->name }} <br>
+        @endforeach
+        </div>
+
     <input type="submit" value="submit">
 
 </form>

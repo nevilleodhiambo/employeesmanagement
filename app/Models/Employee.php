@@ -21,4 +21,7 @@ class Employee extends Model
         'salary',
         'image'
     ];
+    public function allowance(){
+        return $this->belongsToMany(Allowance::class);
+    }
 }
