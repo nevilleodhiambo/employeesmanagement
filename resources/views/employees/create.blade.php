@@ -10,15 +10,23 @@
 
             <div class="form-floating mb-3">
     
-    <input type="text" name="name" class="form-control" id="floatingInput" value="{{old('name')}}" placeholder="John Doe">
+    <input type="text" name="name" class="form-control" id="floatingInput" value="{{old('name')}}" autocomplete="off" placeholder="John Doe">
     <label for="floatingInput">Employee Name</label>
                 <div>@error('name') {{$message}}
                     
                 @enderror </div>
             </div>
 
+            <div class="mb-3">
+                <label for="formFile" class="form-label">Date Of Birth</label>
+                <input class="form-control" type="date" id="formFile" name="dob" value="{{old('dob')}}">
+                <div>@error('dob') {{$message}}
+                        
+                    @enderror </div>
+            </div>
+
             <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="floatingInput" name="email" value="{{old('email')}}"
+                <input type="email" class="form-control" id="floatingInput" name="email" autocomplete="off" value="{{old('email')}}"
                     placeholder="name@example.com">
                 <label for="floatingInput">Email address</label>
                 <div>@error('email') {{$message}}
@@ -27,7 +35,7 @@
             </div>
 
             <div class="form-floating mb-3">
-                <input type="number" class="form-control" id="floatingPassword" name="phone_number" value="{{old('phone_number')}}"
+                <input type="number" class="form-control" id="floatingPassword" name="phone_number" autocomplete="off" value="{{old('phone_number')}}"
                     placeholder="0712345678">
                 <label for="floatingPassword">Phone Number</label>
                 <div>@error('phone_number') {{$message}}
@@ -42,36 +50,29 @@
                 @enderror </div>
         </div>
 
-        <div class="mb-3">
+        <div class="form-floating mb-3">
             <label for="formFile" class="form-label">Job Title</label> 
-            <input class="form-control" type="text" id="formFile" name="job_title" value="{{old('image')}}">
+            <input class="form-control" type="text" id="floatingPassword" name="job_title" autocomplete="off" value="{{old('job_title')}}">
             <div>@error('image') {{$message}}
                     
                 @enderror </div>
         </div>
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="floatingPassword" name="designation" value="{{old('designation')}}"
+            <input type="text" class="form-control" id="floatingPassword" name="designation" autocomplete="off" value="{{old('designation')}}"
                 placeholder="Bachelors">
             <label for="floatingPassword">Designation</label>
             <div>@error('designation') {{$message}}
                     
                 @enderror </div>
         </div>
-        <div class="mb-3">
-            <label for="formFile" class="form-label">Salary</label>
-            <input class="form-control" type="number" id="formFile" name="salary" value="{{old('salary')}}">
+        <div class="form-floating mb-3">
+            <label for="floatingPassword" class="form-label">Salary</label>
+            <input class="form-control" type="number" id="formFile" name="salary" autocomplete="off" value="{{old('salary')}}">
             <div>@error('salary') {{$message}}
                     
                 @enderror </div>
         </div>
 
-    <div class="mb-3">
-            <label for="formFile" class="form-label">Date Of Birth</label>
-            <input class="form-control" type="date" id="formFile" name="dob" value="{{old('dob')}}">
-            <div>@error('dob') {{$message}}
-                    
-                @enderror </div>
-        </div>
 
         <div class="mb-3">
             <label for="formFile" class="form-label">Date Employeed</label>
@@ -93,16 +94,16 @@
                 @enderror </div>
         </div>
 
-        <h6 class="mb-4">Assign Allowance</h6>
+        {{-- <h6 class="mb-4">Assign Allowance</h6>
 
 
         <div class="form-floating mb-3">
             @foreach ($allowances as $allowance)
             <input type="checkbox" name="allowances[]" value="{{ $allowance->id }}"> {{ $allowance->name }} <br>
         @endforeach
-        </div>
+        </div> --}}
 
-    <input type="submit" value="submit">
+    <input type="submit" value="submit" class="btn btn-primary">
 
 </form>
 

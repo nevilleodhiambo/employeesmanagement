@@ -9,6 +9,7 @@
                 <h6 class="mb-4">Create Nssf</h6>
                 <form method="POST" action="{{route('paye.update', $paye->id)}}">
                     @csrf
+                    @method('PUT')
                 <div class="form-floating mb-3"> 
                     <input type="number" class="form-control" id="floatingInput" name="low_income" value="{{$paye->low_income}}"
                         placeholder="E.g Enter Lower Earning Limit">

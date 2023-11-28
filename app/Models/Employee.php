@@ -22,6 +22,18 @@ class Employee extends Model
         'image'
     ];
     public function allowance(){
-        return $this->belongsToMany(Allowance::class);
+        return $this->belongsToMany(Allowance::class, 'employee_allowance');
     }
+
+    public function allowances()
+    {
+        return $this->hasMany(Allowance::class);
+    }
+    public function attendance(){
+        return $this->hasMany(Attendance::class);
+    }
+    public function department(){
+        return $this->belongsTo(Department::class);
+    }
+
 }

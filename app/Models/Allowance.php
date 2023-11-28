@@ -16,4 +16,7 @@ class Allowance extends Model
     public function employee(){
         return $this->belongsToMany(Employee::class);
     }
+    public function giveallowance(){
+        return $this->hasMany(giveallowance::class);
+    }
 }

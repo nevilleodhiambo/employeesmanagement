@@ -59,7 +59,7 @@ class ReliefController extends Controller
     public function edit($id)
     {
         $relief = Relief::where('id', $id)->first();
-        return view('deductions.relief.create', compact('relief'));
+        return view('deductions.relief.edit', compact('relief'));
     }
 
     /**

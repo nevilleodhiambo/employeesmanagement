@@ -6,6 +6,12 @@
     <div class="bg-light rounded h-100 p-4">
         <h6 class="mb-4">Departments List</h6>
         <table class="table table-striped">
+            <div class="d-flex">
+                <a href="{{route('employees.create')}}" class="btn btn-small btn-success">Add Employee</a>
+            </div>
+            <div class="d-flex justify-content-end">
+                <a href="{{route('employees.pdf')}}" class="btn btn-small btn-success">Save</a>
+            </div>
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -30,13 +36,22 @@
                     <td><img src="{{ asset('uploads/' . $employee->image) }}"></td>
                     <td>{{$employee->name}}</td>
                     <td>{{$employee->phone_number}}</td>
-                    <td>{{$employee->department_id}}</td>
+                    <td>{{$employee->department->name}}</td>
                     <td>{{$employee->job_title}}</td>
                     <td>{{$employee->dob}}</td>
                     <td>{{$employee->hire_date}}</td>
                     <td>{{$employee->salary}}</td>
                     <td>{{$employee->designation}}</td>
                     <td>{{$employee->email}}</td>
+                    <td>
+                        <a href="{{route('employees.edit', $employee->id)}}" class="btn btn-small btn-primary">Edit</a>
+                        <a href="{{route('employees.show', $employee->id)}}" class="btn btn-small btn-success">Show</a>
+                        <form action="{{route('employees.destroy', $employee->id)}}" method="POST" onsubmit="confirm('Are you Sure.?')">
+                            @csrf
+                            @method('delete')
+                            <input type="submit" value="Delete" class="btn btn-small btn-danger">
+                        </form>
+                    </td>
                    
                 </tr>
                 @endforeach

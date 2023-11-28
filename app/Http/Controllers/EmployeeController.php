@@ -6,6 +6,7 @@ use App\Models\Employee;
 use App\Http\Controllers\Controller;
 use App\Models\Allowance;
 use App\Models\Department;
+use App\Models\giveallowance;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -50,8 +51,7 @@ class EmployeeController extends Controller
             'designation' => 'required',
             'salary' => 'required|integer',
             'image' => 'required|mimes:jpeg,jpg,png,gif,jfif',
-            // 'image' => 'required|mime',
-
+            // 'password' => 'required|password'
             
 
         ]);
@@ -81,7 +81,7 @@ class EmployeeController extends Controller
         $employee->image = 'uploads/' .$imageName;
         $employee->save();
 
-        $employee->allowance()->sync($request->input('allowances', []));
+        // $employee->allowance()->sync($request->input('allowances', []));
 
 
         return to_route('employees.index')->with('success', 'Successfully Created an Employee');
@@ -91,9 +91,12 @@ class EmployeeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Employee $employee)
+    public function show($id)
     {
-        //
+        $employee = Employee::where('id', $id)->first();
+        $allowances = giveallowance::where('employee_id', $id)->get();
+        // return $allowances;
+        return view('employees/show', compact('employee', 'allowances'));
     }
 
     /**
@@ -123,9 +126,7 @@ class EmployeeController extends Controller
             'designation' => 'required',
             'salary' => 'required|integer',
             'image' => 'required|mimes:jpeg,jpg,png,gif,jfif',
-            // 'image' => 'required|mime',
-
-            
+            // 'image' => 'required|mime',            
 
         ]);
 
