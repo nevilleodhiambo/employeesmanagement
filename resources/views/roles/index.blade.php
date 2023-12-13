@@ -20,13 +20,14 @@
 
                     <th scope="row">{{$loop->iteration}}</th>
                     <td>{{$role->name}}</td>
-                    {{-- <td>
-                        @foreach ($role->permissions as $permission)
+                    <td>
+                        @foreach ($role?->permissions as $permission)
                         <ul>
-                            <li>{{$permission->name}}</li>
-                        @endforeach
+                            <li>{{$permission?->name}}</li>
                         </ul>
-                    </td>--}}
+                        @endforeach
+
+                    </td>
                     <td>
                         <a href="{{route('roles.edit', $role->id)}}" class="btn btn-small btn-success">Edit</a>
                         <form 

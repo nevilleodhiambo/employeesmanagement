@@ -21,10 +21,10 @@
                     <h4>Permissions</h4>
                     @foreach ($permissions as $permission)
                     <label id="{{$permission->id}}">{{$permission->name}}</label> 
-                        <input type="checkbox" name="permission_ids[]" value="{{$permission->id}}"> <br />
+                        <input type="checkbox" name="permission_ids[]" value="{{$permission->name}}"> <br />
                     @endforeach
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Update</button>
 
             </form>
             </div>

@@ -10,6 +10,9 @@
     <div class="bg-light rounded h-100 p-4">
         <h6 class="mb-4">Attendance List</h6>
         <table class="table table-striped">
+            <div class="d-flex justify-content-end">
+                <a href="{{route('attendance.form')}}" class="btn btn-small btn-success">New Attendance</a>
+            </div>
            
             <thead>
                 <tr>
@@ -25,16 +28,10 @@
         @foreach ($attendances as $attendance)
 
                     <th scope="row">{{$loop->iteration}}</th>
-                    <td>{{$attendance->emp_id}}</td>
+                    <td>{{$attendance->employee->name}}</td>
                     <td>{{$attendance->date}}</td>
                     <td>
-                        <form action="/attendance" method="POST">
-                            @csrf
-                            <input type="hidden" name="emp_id" value="{{$attendance->emp_id}}">
-                            <input type="hidden" name="date" value="{{$attendance->date}}">
-                            <input type="checkbox" name="is_present" id="" {{ $attendance->is_present ? 'checked': ''}}>
-                            <button type="submit" class="btn btn-small btn-success">Save</button>
-                        </form>
+                      {{$attendance->is_present ? 'Yes' : 'No' }}
                     </td>
                     {{-- <td>
                         <a href="{{route('attendance.edit', $attendance->id)}}" class="btn btn-small btn-success">Edit</a>

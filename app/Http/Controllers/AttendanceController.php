@@ -27,7 +27,8 @@ class AttendanceController extends Controller
      */
     public function create()
     {
-        return view('attendance/create');
+        $employees = Employee::all();
+        return view('attendance/create', compact('employees'));
     }
 
     /**
@@ -35,29 +36,36 @@ class AttendanceController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(),[
-            'emp_id' => 'required',
-            'date' => 'required|date',
-            'is_present' => 'required|boolean'
-        ]);
+        // $validator = Validator::make($request->all(),[
+        //     'emp_id' => 'required',
+        //     'date' => 'required|date',
+        //     'is_present' => 'required|boolean'
+        // ]);
 
-        if($validator->fails()){
-            return redirect()->back()->withErrors($validator)->withInput();
+        // if($validator->fails()){
+        //     return redirect()->back()->withErrors($validator)->withInput();
+        // }
+        foreach($request->input('emp_ids') as $empId){
+           Attendance::create([
+            'emp_id' => $empId,
+            'date' => now(),
+            'is_present' => true,
+           ]);
         }
-            $emp_id = $request->input('emp_id');
-            $date = $request->input('date');
-            $is_present = $request->input('is_present');
+            // $emp_id = $request->input('emp_id');
+            // $date = $request->input('date');
+            // $is_present = $request->input('is_present');
 
-        $attendance = Attendance::where('user_id', $emp_id)->where('date', $date)->first();
+        // $attendance = Attendance::where('user_id', $emp_id)->where('date', $date)->first();
 
-        if(!$attendance){
-            $attendance = new Attendance();
-            $attendance->emp_id = $request->input('emp_id');
-            $attendance->date = $request->input('date');
-        }
-        $attendance->is_present = $is_present;
-        $attendance->save();
-        return redirect()->route('attendance.index')->with('success', 'Attendance Has Been Marked');
+        // if(!$attendance){
+        //     $attendance = new Attendance();
+        //     $attendance->emp_id = $request->input('emp_id');
+        //     $attendance->date = $request->input('date');
+        // }
+        // $attendance->is_present = $is_present;
+        // $attendance->save();
+        return redirect()->route('attendance.index')->with('status', 'Attendance Has Been Successfully Marked');
     }
 
     /**

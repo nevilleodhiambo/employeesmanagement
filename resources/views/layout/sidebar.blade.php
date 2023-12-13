@@ -23,8 +23,10 @@
                     <a href="element.html" class="dropdown-item">Other Elements</a>
                 </div>
             </div>
-            <a href="{{route('employees.index')}}" class="nav-item nav-link {{ request()->routeIs('employees.index') ? 'active' : '' }}" ><i class="fa fa-th me-2"></i>Employees</a>
-            <a href="{{route('department.index')}}" class="nav-item nav-link {{ request()->routeIs('department.index') ? 'active' : '' }}"><i class="fa fa-keyboard me-2"></i>Departments</a>
+            <a href="{{route('employees.index')}}" class="nav-item nav-link {{ request()->routeIs('attendance.form') ? 'active' : '' }}" ><i class="fa fa-list-ul me-2"></i>Attendance</a>
+            <a href="{{route('employees.index')}}" class="nav-item nav-link {{ request()->routeIs('roles.index') ? 'active' : '' }}" ><i class="fa fa-shield-alt me-2"></i>Roles</a>
+            <a href="{{route('employees.index')}}" class="nav-item nav-link {{ request()->routeIs('employees.index') ? 'active' : '' }}" ><i class="fa fa-user me-2"></i>Employees</a>
+            <a href="{{route('department.index')}}" class="nav-item nav-link {{ request()->routeIs('department.index') ? 'active' : '' }}"><i class="fa fa-building me-2"></i>Departments</a>
             <a href="" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Leaves</a>
             <a href="{{route('calculator')}}" class="nav-item nav-link {{ request()->routeIs('calculator') ? 'active' : '' }}"><i class="fa fa-chart-bar me-2"></i>Payroll</a>
             <div class="nav-item dropdown">

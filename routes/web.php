@@ -46,10 +46,11 @@ Route::resource('relief', ReliefController::class);
 Route::resource('allowance', AllowanceController::class);
 Route::resource('giveallowance', GiveallowanceController::class);
 
-Route::get('/attendance', [AttendanceController::class, 'index']);
-Route::post('/attendance', [AttendanceController::class, 'store']);
-// Route::resource('attendance', AttendanceController::class);
+Route::get('/attendance/form', [AttendanceController::class, 'create'])->name('attendance.form');
+Route::post('/attendance', [AttendanceController::class, 'store'])->name('attendance.store');
+Route::get('attendances', [AttendanceController::class, 'index'])->name('attendance.index');
 // Route::resource('leave', LeaveController::class);
+// Route::resource('attendance', UserController::class);
 Route::resource('roles', RolesController::class);
 
 Route::get('calculator', [PayrollController::class, 'calculator'])->name('calculator');

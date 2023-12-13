@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Allowance;
 use App\Models\Department;
 use App\Models\giveallowance;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -80,6 +81,14 @@ class EmployeeController extends Controller
         $image->storeAs('uploads', $imageName, 'public');
         $employee->image = 'uploads/' .$imageName;
         $employee->save();
+
+        $user = new User();
+        $user->emp_id = $employee->id;
+        $user->email = $employee->email;
+        $user->name = $employee->name;
+        $user->password = bcrypt($request->input('password'));
+        $user->save();
+        $user->assignRole('Employee');
 
         // $employee->allowance()->sync($request->input('allowances', []));
 

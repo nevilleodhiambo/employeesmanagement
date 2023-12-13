@@ -16,7 +16,7 @@ class RolesController extends Controller
      */
     public function index()
     {
-        $roles = DB::table('roles')->get();
+        $roles = Role::with('permissions')->get();
         return view('roles/index', compact('roles'));
     }
 
@@ -41,10 +41,14 @@ class RolesController extends Controller
         if($validator->fails()){
             return redirect()->back()->withErrors($validator)->withInput();
         }
+        // dd($request->permission_ids);
 
         // return $request->all();
         $role = new Role();
         $role->name = $request->name;
+
+        // dd($role->syncPermissions([1,3]));
+
         $role->syncPermissions($request->permission_ids);
         $role->save();
         return redirect()->route('roles.index')->with('status', 'Successfully Created a Role');
@@ -85,7 +89,7 @@ class RolesController extends Controller
         $role->name = $request->name;
         $role->syncPermissions($request->permission_ids);
         $role->save();
-        return to_route('roles/index')->with('status', 'Role Successfully Updated');
+        return to_route('roles.index')->with('status', 'Role Successfully Updated');
 
     }
 
